@@ -20,7 +20,10 @@ let defaultIScrollOptions = {}
  * @param options see http://iscrolljs.com/
  */
 export const setDefaultIScrollOptions = (options) => {
-    Object.assign(defaultIScrollOptions, options)
+    defaultIScrollOptions = {
+        ...defaultIScrollOptions,
+        ...options
+    };
 }
 
 class IScroll extends Component {
@@ -36,7 +39,11 @@ class IScroll extends Component {
     constructor(props) {
         super(props)
 
-        Object.assign(this._options, defaultIScrollOptions, props.options)
+        this._options = {
+            ...defaultIScrollOptions,
+            ...props.options
+        };
+
         if (props.pullDownToRefresh) {
             this._options.probeType = 2
         }

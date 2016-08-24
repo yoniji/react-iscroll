@@ -72,6 +72,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var _react = __webpack_require__(2);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -97,17 +99,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param options see http://iscrolljs.com/
 	 */
 	var setDefaultIScrollOptions = exports.setDefaultIScrollOptions = function setDefaultIScrollOptions(options) {
-	    Object.assign(defaultIScrollOptions, options);
+	    defaultIScrollOptions = _extends({}, defaultIScrollOptions, options);
 	};
 
 	var IScroll = function (_Component) {
 	    _inherits(IScroll, _Component);
 
-	    // reference to iscroll instance
-
-
 	    // the iscroll options
-
 	    function IScroll(props) {
 	        _classCallCheck(this, IScroll);
 
@@ -117,7 +115,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        _this._listenToTouchEnd = false;
 
 
-	        Object.assign(_this._options, defaultIScrollOptions, props.options);
+	        _this._options = _extends({}, defaultIScrollOptions, props.options);
+
 	        if (props.pullDownToRefresh) {
 	            _this._options.probeType = 2;
 	        }
@@ -140,6 +139,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    // touchend listener is used for PullDownToRefresh
+
+	    // reference to iscroll instance
 
 
 	    _createClass(IScroll, [{
